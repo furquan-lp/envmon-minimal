@@ -8,7 +8,7 @@ ESP32 IoT device to monitor environment data and upload it to a webserver
 * Upload to a webserver accessible through the Internet
 
 ## Disadvantages:
-* Web functionality not built yet
+* Web functionality not added yet
 * Slow build time due to limitations of Mongoose OS
 
 ## How to build:
