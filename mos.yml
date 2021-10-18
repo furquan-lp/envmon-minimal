@@ -8,7 +8,7 @@ mongoose_os_version: ${mos.version}
 
 config_schema:
   - ["app", "o", {title: "My app custom settings"}]
-  - ["app.pin", "i", 2, {title: "GPIO pin a sensor is attached to"}]
+  - ["app.pin", "i", 4, {title: "GPIO pin a sensor is attached to"}]
 
 filesystem:
   - fs
