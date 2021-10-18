@@ -1,6 +1,8 @@
 # environment-monitor
 ESP32 IoT device to monitor environment data and upload it to a webserver
 
+![](screenshot.png)
+
 ## Features:
 * [Written in JavaScript](fs/init.js)
 * Runs on Mongoose OS (https://mongoose-os.com/mos.html) IoT platform
