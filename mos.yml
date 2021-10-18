@@ -1,6 +1,6 @@
 author: syed
-description: A JS-enabled test firmware
-version: 1.0
+description: ESP32 IoT device to monitor environment data
+version: 0.1
 manifest_version: 2017-05-18
 libs_version: ${mos.version}
 modules_version: ${mos.version}
