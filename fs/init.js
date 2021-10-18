@@ -10,8 +10,7 @@ let pin = Cfg.get('app.pin');
 let dht = DHT.create(pin, DHT.DHT22);
 
 Timer.set(1000, true, function() {
-  print('Temperature:', dht.getTemp());
-  print('Humidity: ', dht.getHumidity());
+  print('Temperature:', dht.getTemp(), 'Humidity: ', dht.getHumidity(), '%');
 }, null);
 
 /*RPC.addHandler('Temp.Read', function(args) {
