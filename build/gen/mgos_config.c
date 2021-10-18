@@ -1,7 +1,7 @@
 /* clang-format off */
 /*
  * Generated file - do not edit.
- * Command: /mongoose-os/tools/mgos_gen_config.py --c_name=mgos_config --c_global_name=mgos_sys_config --dest_dir=/data/fwbuild-volumes/2.19.1/apps/environment-monitor/esp32/build_contexts/build_ctx_073623812/build/gen/ /mongoose-os/src/mgos_debug_udp_config.yaml /mongoose-os/platforms/esp32/src/esp32_sys_config.yaml /data/fwbuild-volumes/2.19.1/apps/environment-monitor/esp32/build_contexts/build_ctx_073623812/build/gen/mos_conf_schema.yml
+ * Command: /mongoose-os/tools/mgos_gen_config.py --c_name=mgos_config --c_global_name=mgos_sys_config --dest_dir=/data/fwbuild-volumes/2.19.1/apps/environment-monitor/esp32/build_contexts/build_ctx_743724380/build/gen/ /mongoose-os/src/mgos_debug_udp_config.yaml /mongoose-os/platforms/esp32/src/esp32_sys_config.yaml /data/fwbuild-volumes/2.19.1/apps/environment-monitor/esp32/build_contexts/build_ctx_743724380/build/gen/mos_conf_schema.yml
  */
 
 #include "mgos_config.h"
@@ -325,7 +325,7 @@ const struct mgos_conf_entry *mgos_config_app_get_schema(void) {
 }
 
 void mgos_config_app_set_defaults(struct mgos_config_app *cfg) {
-  cfg->pin = 2;
+  cfg->pin = 4;
 }
 
 /* struct mgos_config */
@@ -882,7 +882,7 @@ const struct mgos_config_app *mgos_config_get_app(const struct mgos_config *cfg)
 
 /* app.pin */
 int mgos_config_get_app_pin(const struct mgos_config *cfg) { return cfg->app.pin; }
-int mgos_config_get_default_app_pin(void) { return 2; }
+int mgos_config_get_default_app_pin(void) { return 4; }
 void mgos_config_set_app_pin(struct mgos_config *cfg, int v) { cfg->app.pin = v; }
 bool mgos_sys_config_get(const struct mg_str key, struct mg_str *value) {
   return mgos_config_get(key, value, &mgos_sys_config, mgos_config_schema());

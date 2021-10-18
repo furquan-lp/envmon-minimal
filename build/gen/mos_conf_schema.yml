@@ -297,5 +297,5 @@
   - title: My app custom settings
 - - app.pin
   - i
-  - 2
+  - 4
   - title: GPIO pin a sensor is attached to
