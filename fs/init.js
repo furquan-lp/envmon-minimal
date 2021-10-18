@@ -3,7 +3,8 @@ load('api_rpc.js');
 load('api_dht.js');
 load('api_timer.js');
 
-print('-Environment monitor begin-')
+print('-Environment monitor begin-');
+print('Preliminary build');
 
 let pin = Cfg.get('app.pin');
 let dht = DHT.create(pin, DHT.DHT22);
