@@ -1,16 +1,21 @@
 load('api_config.js');
 load('api_rpc.js');
 load('api_dht.js');
+load('api_mq135.js');
 load('api_timer.js');
 
 print('-Environment monitor begin-');
 print('Preliminary build');
 
-let pin = Cfg.get('app.pin');
-let dht = DHT.create(pin, DHT.DHT22);
+let pinDHT = Cfg.get('app.pin');
+let pinMQ = 12;
+let dht = DHT.create(pinDHT, DHT.DHT22);
+
+MQ135.attach(pinMQ);
 
 Timer.set(1000, true, function() {
   print('Temperature:', dht.getTemp(), ' Humidity:', dht.getHumidity(), '%');
+  print('Air Quality Coefficient:', MQ135.getPPM(pinMQ));
 }, null);
 
 /*RPC.addHandler('Temp.Read', function(args) {
