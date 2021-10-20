@@ -7,8 +7,8 @@ load('api_timer.js');
 print('-Environment monitor begin-');
 print('Preliminary build');
 
-let pinDHT = Cfg.get('app.pin');
-let pinMQ = 12;
+let pinDHT = Cfg.get('app.dhtpin');
+let pinMQ = Cfg.get('app.mq135pin');
 let dht = DHT.create(pinDHT, DHT.DHT22);
 
 MQ135.attach(pinMQ);
