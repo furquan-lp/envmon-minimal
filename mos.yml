@@ -7,8 +7,9 @@ modules_version: ${mos.version}
 mongoose_os_version: ${mos.version}
 
 config_schema:
-  - ["app", "o", {title: "My app custom settings"}]
-  - ["app.pin", "i", 4, {title: "GPIO pin a sensor is attached to"}]
+  - ["app", "o", {title: "app custom settings"}]
+  - ["app.dhtpin", "i", 4, {title: "GPIO pin DHT22 sensor is attached to"}]
+  - ["app.mq135pin", "i", 5, {title: "GPIO pin MQ135 sensor is attached to"}]
 
 filesystem:
   - fs
