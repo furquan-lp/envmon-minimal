@@ -1,34 +1,12 @@
 #include <WiFi.h>
 #include <WebServer.h>
 #include "sensors.h"
-
-const char* ssid = "****";
-const char* password = "****";
+#include "envmon.h"
 
 WebServer server(80);
 
-String interstitial[] = { "<!DOCTYPE html>\
-<html>\
-<title>ESP32 Environment Monitor</title>\
-<style type=\"text/css\">\
-body{\
-font-family: Sans-Serif;\color:#444;\
-}\
-</style>\
-<body>\
-<h1>ESP32 Environment Monitor v0.x</h1>\
-<h2>Temperature: ", "*C; Humidity: ", "</h2><script>\
-setTimeout(function(){\
-window.location.reload(1);\
-}, 3000);\
-</script>\
-</body>\
-</html>"
-};
-
 // HTML & CSS
 String HTML = String(interstitial[0]);
-const int interstitial_length = 3;
 
 void setup() {
 	Serial.begin(115200);
