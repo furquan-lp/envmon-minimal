@@ -10,7 +10,6 @@ ESP32 IoT device to monitor environment data and upload it to a webserver
 * Upload to a webserver accessible through the Internet
 
 ## Disadvantages:
-* Web functionality not added yet
 * Slow build time due to limitations of Mongoose OS
 
 ## How to build:
@@ -28,5 +27,10 @@ ESP32 IoT device to monitor environment data and upload it to a webserver
  /environment-monitor mos flash
 ```
 * Reboot the device using `Ctrl`+`u`
+
+* Connect to your local WiFi to enable networking
+```
+ mos wifi [network name] [password]
+```
 
 Work in progress
