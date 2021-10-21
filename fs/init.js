@@ -18,6 +18,14 @@ Timer.set(1000, true, function() {
   print('Air Quality Coefficient:', MQ135.getPPM(pinMQ));
 }, null);
 
-/*RPC.addHandler('Temp.Read', function(args) {
+RPC.addHandler('Temp.Read', function(args) {
   return { value: dht.getTemp() };
-});*/
+});
+
+RPC.addHandler('Humidity.Read', function(args) {
+  return { value: dht.getHumidity() };
+});
+
+RPC.addHandler('CO2.Read', function(args) {
+  return { value: MQ135.getPPM(pinMQ)) };
+});
