@@ -1,31 +1,38 @@
 #include <WiFi.h>
 #include <WebServer.h>
+#include "sensors.h"
 
-int count = 0;
-const char* ssid = "****"
+const char* ssid = "****";
 const char* password = "****";
 
 WebServer server(80);
 
-String html1 = "<!DOCTYPE html>\
+String interstitial[] = { "<!DOCTYPE html>\
 <html>\
+<title>ESP32 Environment Monitor</title>\
+<style type=\"text/css\">\
+body{\
+font-family: Sans-Serif;\color:#444;\
+}\
+</style>\
 <body>\
-<h1>ESP32 Web Server</h1>\
-<h1>Count: ";
-String html2 = "<script>\
+<h1>ESP32 Environment Monitor v0.x</h1>\
+<h2>Temperature: ", "*C; Humidity: ", "</h2><script>\
 setTimeout(function(){\
 window.location.reload(1);\
-}, 5000);\
+}, 3000);\
 </script>\
-</h1>\
 </body>\
-</html>";
+</html>"
+};
+
 // HTML & CSS
-String HTML = String(html1);
+String HTML = String(interstitial[0]);
+const int interstitial_length = 3;
 
 void setup() {
 	Serial.begin(115200);
-	Serial.println("Try Connecting to ");
+	Serial.println("Connecting to ");
 	Serial.println(ssid);
 
 	WiFi.begin(ssid, password);
@@ -33,15 +40,13 @@ void setup() {
 		delay(1000);
 		Serial.print(".");
 	}
-	Serial.println("");
-	Serial.println("WiFi connected successfully");
+	Serial.println("\nWiFi connected successfully");
 	Serial.print("Got IP: ");
 	Serial.println(WiFi.localIP());
 
 	handle_Strings();
 	delay(100);
 	server.on("/", handle_root);
-
 	server.begin();
 	Serial.println("HTTP server started");
 	delay(100); 
@@ -52,7 +57,6 @@ void loop() {
 	delay(100);
 	server.handleClient();
 	delay(1000);
-	count++;
 }
 
 // Handle root url (/)
@@ -60,10 +64,12 @@ void handle_root() {
 	server.send(200, "text/html", HTML);
 }
 
+// ** Also handles sensor data
 void handle_Strings() {
-	String str1 = html1;
-	String str2 = html2;
-	str1.concat(count);
-	str1.concat(html2);
+	String str1 = interstitial[0];
+	str1.concat(get_temp());
+	str1.concat(interstitial[1]);
+	str1.concat(get_humid());
+	str1.concat(interstitial[2]);
 	HTML = String(str1);
 }
