@@ -2,17 +2,22 @@
 #include <WebServer.h>
 
 int count = 0;
-const char* ssid = "****";
+const char* ssid = "****"
 const char* password = "****";
 
-WebServer server(8888);
+WebServer server(80);
 
 String html1 = "<!DOCTYPE html>\
 <html>\
 <body>\
 <h1>ESP32 Web Server</h1>\
 <h1>Count: ";
-String html2 = "</h1>\
+String html2 = "<script>\
+setTimeout(function(){\
+window.location.reload(1);\
+}, 5000);\
+</script>\
+</h1>\
 </body>\
 </html>";
 // HTML & CSS
