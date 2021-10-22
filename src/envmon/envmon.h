@@ -19,7 +19,7 @@ background-color: #FFFFCC\
 <div class=\"esp32data\">\
 <h1>ESP32 Environment Monitor v0.x</h1>\
 <h2>Temperature: ", "&deg;C Humidity: ", "%</h2></div>\
-Copyright (C) 2021 Syed Furquan Ahmad\
+<p style=\"font-family:serif\">Copyright (C) 2021 Syed Furquan Ahmad</p>\
 <script>\
 setTimeout(function(){\
 window.location.reload(1);\
