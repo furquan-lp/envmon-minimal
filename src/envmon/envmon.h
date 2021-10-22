@@ -1,3 +1,6 @@
+#ifndef ENVMON_H
+#define ENVMON_H
+
 const char* ssid = "****";
 const char* password = "****";
 
@@ -21,3 +24,4 @@ window.location.reload(1);\
 };
 
 const int html_data_length = 3;
+#endif

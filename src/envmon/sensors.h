@@ -1,3 +1,6 @@
+#ifndef SENSORS_H
+#define SENSORS_H
+
 #include <DHT_U.h>
 #include <DHT.h>
 
@@ -13,3 +16,4 @@ int get_adjusted_ppm(int, int);
 
 float get_humid(void);
 float get_temp(void);
+#endif
