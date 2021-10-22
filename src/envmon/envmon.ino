@@ -6,7 +6,7 @@
 WebServer server(80);
 
 // HTML & CSS
-String HTML = String(interstitial[0]);
+String HTML = String(html_data[0]);
 
 void setup() {
     init_DHT();
@@ -45,10 +45,10 @@ void handle_root() {
 
 // ** Also handles sensor data
 void handle_Strings() {
-    String str1 = interstitial[0];
+    String str1 = html_data[0];
     str1.concat(get_temp());
-    str1.concat(interstitial[1]);
+    str1.concat(html_data[1]);
     str1.concat(get_humid());
-    str1.concat(interstitial[2]);
+    str1.concat(html_data[2]);
     HTML = String(str1);
 }
