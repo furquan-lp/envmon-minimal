@@ -3,13 +3,13 @@
 DHT dht = DHT(DHT_PIN, DHTType);
 
 void init_DHT() {
-	dht.begin();
+    dht.begin();
 }
 
 float get_humid() {
-	return dht.readHumidity();
+    return dht.readHumidity();
 }
 
 float get_temp() {
-	return dht.readTemperature();
+    return dht.readTemperature();
 }
