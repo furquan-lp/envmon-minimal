@@ -6,6 +6,8 @@ The Web Server serves a hardcoded HTML page that is manipulated using C/C++
 to display the sensors data. The page is reloaded every three seconds using
 simple JavaScript code so the sensor data being displayed remains updated.
 
+![](device.jpg)
+
 ## Features:
 * Uses [Arduino-ESP32 by Espressif](https://github.com/espressif/arduino-esp32)
 * Programmed in C/C++ and HTML/CSS
