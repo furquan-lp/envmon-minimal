@@ -22,8 +22,7 @@ library from the Library Manager
 * Build and upload the code
 
 ## To Do:
-* Display and update the sensors data without reloading
+* Use JavaScript and standard web technologies instead of manipulating
+hardcoded HTML/CSS using C/C++ and serving it
 * Add a library for MQ135
 * Make the hosted webpage look better with CSS
-
-Work-in-progress
