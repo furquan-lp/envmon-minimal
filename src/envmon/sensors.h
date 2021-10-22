@@ -5,6 +5,8 @@
 #define DHTType DHT22
 #define MQ_PIN 5
 
+void init_DHT(void);
+
 int mq_read(void);
 int get_ppm(void);
 int get_adjusted_ppm(int, int);
