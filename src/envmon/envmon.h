@@ -1,12 +1,12 @@
 const char* ssid = "****";
 const char* password = "****";
 
-String interstitial[] = { "<!DOCTYPE html>\
+String html_data[] = { "<!DOCTYPE html>\
 <html>\
 <title>ESP32 Environment Monitor</title>\
 <style type=\"text/css\">\
 body{\
-font-family: Sans-Serif;\color:#444;\
+font-family: Sans-Serif;color:#444;\
 }\
 </style>\
 <body>\
@@ -20,4 +20,4 @@ window.location.reload(1);\
 </html>"
 };
 
-const int interstitial_length = 3;
+const int html_data_length = 3;
