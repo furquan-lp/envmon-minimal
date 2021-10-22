@@ -25,4 +25,4 @@ library from the Library Manager
 * Use JavaScript and standard web technologies instead of manipulating
 hardcoded HTML/CSS using C/C++ and serving it
 * Add a library for MQ135
-* Make the hosted webpage look better with CSS
+* Add an LCD screen to display the connected IP address for better visibility
