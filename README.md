@@ -1,6 +1,6 @@
 # environment-monitor
 ESP32 IoT device to monitor environment data and upload it to a webserver
-![](screenshot.png)
+![](screenshot.gif)
 
 The Web Server serves a hardcoded HTML page that is manipulated using C/C++
 to display the sensors data. The page is reloaded every three seconds using
