@@ -9,7 +9,7 @@ WebServer server(80);
 String HTML = String(interstitial[0]);
 
 void setup() {
-  init_DHT();
+    init_DHT();
     Serial.begin(115200);
     Serial.println("Connecting to ");
     Serial.println(ssid);
