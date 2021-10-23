@@ -1,4 +1,4 @@
-# environment-monitor
+# ![](icon.png) environment-monitor
 ESP32 IoT device to monitor environment data and upload it to a webserver
 ![](screenshot.gif)
 
