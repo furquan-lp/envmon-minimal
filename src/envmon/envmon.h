@@ -5,8 +5,9 @@
 
 const char* ssid = "****";
 const char* password = "****";
+const char* data_string = "DATA";
 
-String html_data[] = { "<!DOCTYPE html>\
+String html_data = "<!DOCTYPE html>\
 <html>\
 <title>ESP32 Environment Monitor</title>\
 <style type=\"text/css\">\
@@ -20,7 +21,7 @@ background-color: #FFFFCC\
 <body>\
 <div class=\"esp32data\">\
 <h1>ESP32 Environment Monitor v0.x</h1>\
-<h2>Temperature: ", "&deg;C Humidity: ", "%</h2></div>\
+<h2>Temperature: DATA0&deg;C Humidity: DATA1%</h2></div>\
 <p style=\"font-family:serif\">Copyright (C) 2021 Syed Furquan Ahmad</p>\
 <script>\
 setTimeout(function(){\
@@ -29,12 +30,9 @@ window.location.reload(1);\
 </script>\
 <br>\
 </body>\
-</html>"
-};
-
-const int html_data_length = 3;
+</html>";
 
 void handle_root(void);
-void update_sensor_data(void);
-void handle_Strings(void);
+void update_sensors_data(void);
+void update_html(void);
 #endif
