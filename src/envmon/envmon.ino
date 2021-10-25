@@ -10,6 +10,7 @@ String HTML = String(html_data[0]);
 
 void setup() {
     init_DHT();
+    pinMode(ONBOARD_LED, OUTPUT);
     Serial.begin(115200);
     Serial.println("Connecting to ");
     Serial.println(ssid);
@@ -32,10 +33,12 @@ void setup() {
 }
 
 void loop() {
+    digitalWrite(ONBOARD_LED, HIGH);
     handle_Strings();
     delay(100);
+    digitalWrite(ONBOARD_LED, LOW);
     server.handleClient();
-    delay(1000);
+    delay(2000);
 }
 
 // Handle root url (/)
