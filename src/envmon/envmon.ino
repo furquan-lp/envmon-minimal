@@ -5,8 +5,8 @@
 
 WebServer server(80);
 
-// HTML & CSS
-String HTML = String(html_data[0]);
+String HTML = "";
+String sensors_data[] = { "unavailable", "unavailable" };
 
 void setup() {
     init_DHT();
@@ -24,7 +24,7 @@ void setup() {
     Serial.print("Got IP: ");
     Serial.println(WiFi.localIP());
 
-    handle_Strings();
+    update_html();
     delay(100);
     server.on("/", handle_root);
     server.begin();
@@ -34,11 +34,12 @@ void setup() {
 
 void loop() {
     digitalWrite(ONBOARD_LED, HIGH);
-    handle_Strings();
+    update_sensors_data();
+    update_html();
     delay(100);
     digitalWrite(ONBOARD_LED, LOW);
     server.handleClient();
-    delay(2000);
+    delay(2800);
 }
 
 // Handle root url (/)
@@ -46,12 +47,16 @@ void handle_root() {
     server.send(200, "text/html", HTML);
 }
 
-// ** Also handles sensor data
-void handle_Strings() {
-    String str1 = html_data[0];
-    str1.concat(get_temp());
-    str1.concat(html_data[1]);
-    str1.concat(get_humid());
-    str1.concat(html_data[2]);
-    HTML = String(str1);
+void update_sensors_data() {
+    sensors_data[0] = String(get_temp());
+    sensors_data[1] = String(get_humid());
+}
+
+void update_html() {
+    HTML = String(html_data);
+    for (int i = 0; i < 2; i++) {
+        String datstr = String(data_string);
+        datstr.concat(i);
+        HTML.replace(datstr, sensors_data[i]);
+    }
 }
