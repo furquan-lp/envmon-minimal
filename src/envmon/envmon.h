@@ -33,4 +33,8 @@ window.location.reload(1);\
 };
 
 const int html_data_length = 3;
+
+void handle_root(void);
+void update_sensor_data(void);
+void handle_Strings(void);
 #endif
