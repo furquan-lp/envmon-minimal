@@ -1,6 +1,8 @@
 #ifndef ENVMON_H
 #define ENVMON_H
 
+#define ONBOARD_LED 2
+
 const char* ssid = "****";
 const char* password = "****";
 
