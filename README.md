@@ -3,8 +3,8 @@ ESP32 IoT device to monitor environment data and upload it to a webserver
 ![](screenshot.gif)
 
 The Web Server serves a hardcoded HTML page that is updated with the data
-using C/C++ string manipulation. The page is reloaded every three seconds using
-simple JavaScript code so the sensor data being displayed remains updated.
+using snprintf(). The webpage is reloaded every three seconds using simple
+JavaScript code so the sensor data being displayed remains updated.
 
 ![](device.jpg)
 
@@ -14,7 +14,7 @@ simple JavaScript code so the sensor data being displayed remains updated.
 * Web Server available on LAN
 
 ## Limitations:
-* No multiple connections to the web server
+* Connections to the server are limited by the WiFi connection
 
 ## How to build:
 The easiest way to build the project and upload it to an ESP32 board would be
