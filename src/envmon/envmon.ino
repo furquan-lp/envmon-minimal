@@ -5,6 +5,9 @@
 
 WebServer server(80);
 
+uint16_t uptime_s = 0;
+uint8_t uptime_m = 0;
+
 void setup() {
     init_DHT();
     pinMode(ONBOARD_LED, OUTPUT);
@@ -29,16 +32,21 @@ void setup() {
 }
 
 void loop() {
+    if (uptime_s >= 59) {
+        uptime_s = 0;
+        uptime_m++;
+    }
     digitalWrite(ONBOARD_LED, HIGH);
     delay(100);
     server.handleClient();
     digitalWrite(ONBOARD_LED, LOW);
     delay(2800);
+    uptime_s += 3;
 }
 
 // Update the sensors data in the HTML and handle the root url (/)
 void handle_root() {
-    char html[strlen(html_data) + 16];
-    snprintf(html, sizeof(html), html_data, get_temp(), get_humid());
+    char html[strlen(html_data) + 32];
+    snprintf(html, sizeof(html), html_data, get_temp(), get_humid(), uptime_m, uptime_s);
     server.send(200, "text/html", html);
 }
