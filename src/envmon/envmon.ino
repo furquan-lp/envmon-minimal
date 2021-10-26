@@ -54,8 +54,8 @@ void update_sensors_data() {
 
 void update_html() {
     HTML = String(html_data);
-    for (int i = 0; i < 2; i++) {
-        String datstr = String(data_string);
+    for (uint8_t i = 0; i < 2; i++) {
+        String datstr = String(DATA_STR);
         datstr.concat(i);
         HTML.replace(datstr, sensors_data[i]);
     }
