@@ -2,12 +2,12 @@
 #define ENVMON_H
 
 #define ONBOARD_LED 2
+#define DATA_STR "DATA"
 
 const char* ssid = "****";
 const char* password = "****";
-const char* data_string = "DATA";
 
-String html_data = "<!DOCTYPE html>\
+PROGMEM String html_data = "<!DOCTYPE html>\
 <html>\
 <title>ESP32 Environment Monitor</title>\
 <style type=\"text/css\">\
