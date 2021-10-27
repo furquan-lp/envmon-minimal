@@ -1,5 +1,6 @@
 #include <WiFi.h>
 #include <WebServer.h>
+#include <ESPmDNS.h>
 #include "sensors.h"
 #include "envmon.h"
 
@@ -18,6 +19,12 @@ void setup() {
     Serial.println("\nWiFi connected");
     Serial.print("IP Address: ");
     Serial.println(WiFi.localIP());
+
+    if (MDNS.begin(mdns_url)) {
+        Serial.print("MDNS responder started at: http://");
+        Serial.print(mdns_url);
+        Serial.println(".local/");
+    }
 
     delay(100);
     server.on("/", handle_root);
