@@ -2,6 +2,7 @@
 #define ENVMON_H
 
 #define LED_PIN 13
+#define HTTP_PORT 80
 
 const char* ssid = "****";
 const char* password = "****";
@@ -32,7 +33,7 @@ window.location.reload(1);\
 </body>\
 </html>";
 
-WebServer server(80);
+WebServer server(HTTP_PORT);
 
 void handle_root(void);
 #endif
