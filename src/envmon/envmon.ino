@@ -24,13 +24,16 @@ void setup() {
         Serial.print("MDNS responder started at: http://");
         Serial.print(mdns_url);
         Serial.println(".local/");
+    } else {
+        Serial.println("Error setting up MDNS responder!");
     }
 
     delay(100);
     server.on("/", handle_root);
     server.begin();
     Serial.println("HTTP server started");
-    delay(100); 
+    delay(100);
+    MDNS.addService("http", "tcp", HTTP_PORT);
 }
 
 void loop() {
@@ -38,7 +41,6 @@ void loop() {
     server.handleClient();
 }
 
-// Update the sensors data in the HTML and handle the root url (/)
 void handle_root() {
     digitalWrite(LED_PIN, HIGH);
     uint16_t uptime_s = millis() / 1000;
