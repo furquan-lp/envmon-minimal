@@ -25,7 +25,5 @@ library from the Library Manager
 * Build and upload the code
 
 ## To Do:
-* Use JavaScript and standard web technologies instead of manipulating
-hardcoded HTML/CSS using C/C++ and serving it
 * Add a library for MQ135
 * Add an LCD screen to display the connected IP address for better visibility
