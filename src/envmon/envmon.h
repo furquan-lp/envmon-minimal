@@ -5,6 +5,7 @@
 
 const char* ssid = "****";
 const char* password = "****";
+const char* mdns_url = "esp32env";
 const char* html_data = "<!DOCTYPE html>\
 <html>\
 <title>ESP32 Environment Monitor</title>\
