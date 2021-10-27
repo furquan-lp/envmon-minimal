@@ -31,5 +31,7 @@ window.location.reload(1);\
 </body>\
 </html>";
 
+WebServer server(80);
+
 void handle_root(void);
 #endif
