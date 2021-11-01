@@ -1,7 +1,7 @@
-#include <LiquidCrystal_I2C.h>
-
 #ifndef CLCD_I2C_H
 #define CLCD_I2C_H
+
+#include <LiquidCrystal_I2C.h>
 
 #define CLCD_COLS 16
 #define CLCD_ROWS 2
