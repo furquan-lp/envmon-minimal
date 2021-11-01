@@ -25,8 +25,8 @@ using the [Arduino IDE](https://www.arduino.cc/en/software/).
 * Get the [Arduino-ESP32 core](https://github.com/espressif/arduino-esp32)
 * Download the Adafruit Unified Sensor library along with the Adafruit DHT22
 library from the Library Manager
-* Build and upload the code
+* Downalod the LiquidCrystal I2C library from the Library Manager
+* Build and upload the code to your ESP32 board
 
 ## To Do:
 * Add a library for MQ135
-* Add an LCD screen to display the connected IP address for better visibility
