@@ -24,7 +24,6 @@ void setup() {
     Serial.println("\nWiFi connected");
     Serial.print("IP Address: ");
     Serial.println(WiFi.localIP());
-    clcd.printLCD("IP");
     clcd.printLCD(WiFi.localIP().toString());
 
     if (MDNS.begin(mdns_url)) {
@@ -50,14 +49,6 @@ void setup() {
 void loop() {
     delay(100);
     server.handleClient();
-}
-
-void printStatusLCD() {
-    clcd.printLCD("IP");
-    clcd.printLCD(WiFi.localIP().toString());
-    char url[16];
-    sprintf(url, "%s.local/", mdns_url);
-    clcd.printAt(url, 1);
 }
 
 void handle_root() {
