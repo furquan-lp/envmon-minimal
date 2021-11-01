@@ -8,9 +8,9 @@ CharacterLCD::CharacterLCD (uint8_t address, uint8_t c, uint8_t r)
 }
 
 void CharacterLCD::init() {
+    //lcd = LiquidCrystal_I2C(addr, rows, cols);
     lcd.init();
     lcd.backlight();
-    lcd = LiquidCrystal_I2C(addr, rows, cols);
     lcd.setCursor(0, 0);
 }
 
