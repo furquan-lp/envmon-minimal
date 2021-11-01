@@ -9,7 +9,7 @@ The Web Server serves a hardcoded HTML page that is updated with the data
 using snprintf(). The webpage is reloaded every three seconds using simple
 JavaScript code so the sensor data being displayed remains updated.
 
-![](device.jpg)
+![](device.gif)
 
 ## Features:
 * Uses [Arduino-ESP32 by Espressif](https://github.com/espressif/arduino-esp32)
