@@ -23,7 +23,6 @@ void CharacterLCD::selectLine(int l) {
         lcd.setCursor(0, l);
 }
 
-
 void CharacterLCD::printLCD(const char* s) {
     if(strlen(s) <= cols)
         lcd.print(s);
@@ -40,6 +39,20 @@ void CharacterLCD::printLCD(int n) {
 
 void CharacterLCD::printLCD(float f) {
     lcd.print(f);
+}
+
+void CharacterLCD::printAt(const char* s, uint8_t line) {
+    if (line < rows) {
+        lcd.setCursor(0, line);
+        this->printLCD(s);
+    }
+}
+
+void CharacterLCD::printAt(String s, uint8_t line) {
+    if (line < rows) {
+        lcd.setCursor(0, line);
+        this->printLCD(s);
+    }
 }
 
 void CharacterLCD::printAt(const char* s, uint8_t col, uint8_t row) {
