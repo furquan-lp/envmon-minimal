@@ -20,6 +20,8 @@ public:
     void printLCD(String s);
     void printLCD(int n);
     void printLCD(float f);
+    void printAt(const char* s, uint8_t line);
+    void printAt(String s, uint8_t line);
     void printAt(const char* s, uint8_t col, uint8_t row);
     void printAt(String s, uint8_t col, uint8_t row);
 };
