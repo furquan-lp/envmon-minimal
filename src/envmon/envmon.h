@@ -1,5 +1,6 @@
 #ifndef ENVMON_H
 #define ENVMON_H
+#include "CLCD_I2C.h"
 
 #define LED_PIN 13
 #define HTTP_PORT 80
@@ -34,6 +35,7 @@ window.location.reload(1);\
 </html>";
 
 WebServer server(HTTP_PORT);
+CharacterLCD clcd(0x27, 16, 2);
 
 void handle_root(void);
 #endif
