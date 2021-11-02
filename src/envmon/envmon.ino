@@ -1,6 +1,7 @@
 #include <WiFi.h>
 #include <WebServer.h>
 #include <ESPmDNS.h>
+#include <SPIFFS.h>
 #include "sensors.h"
 #include "envmon.h"
 
@@ -8,10 +9,21 @@ void setup() {
     init_DHT();
     pinMode(LED_PIN, OUTPUT);
     clcd.init();
-    
     Serial.begin(115200);
+
+    if(!SPIFFS.begin(true)){
+        clcd.printLCD("Filesystem Error");
+        clcd.printAt("Stop.", 1);
+        Serial.println("An Error has occurred while mounting SPIFFS");
+        return;
+    }
+    clcd.printLCD("Reading HTML/CSS");
+    delay(100);
+    readHTMLCSS();
+
     Serial.println("Connecting to ");
     Serial.println(ssid);
+    clcd.clearLCD();
     clcd.printLCD("Connecting WiFi");
     WiFi.begin(ssid, password);
     clcd.selectLine(1);
@@ -40,6 +52,9 @@ void setup() {
 
     delay(100);
     server.on("/", handle_root);
+    server.on("/style.css", []() {
+        server.send(200, "text/css", css_data);
+    });
     server.begin();
     Serial.println("HTTP server started");
     delay(100);
@@ -49,6 +64,26 @@ void setup() {
 void loop() {
     delay(100);
     server.handleClient();
+}
+
+void readHTMLCSS() {
+    File html = SPIFFS.open("/index.html");
+    File css = SPIFFS.open("/style.css");
+    if (!html) {
+        clcd.clearLCD();
+        clcd.printLCD("index.html fail");
+        clcd.printAt("Stop.", 1);
+        Serial.println("Failed to open index.html");
+        return;
+    }
+    for (int i = 0; html.available(); i++) {
+        html_data[i] = html.read();
+    }
+    for (int i = 0; css.available(); i++) {
+        css_data[i] = css.read();
+    }
+    html.close();
+    css.close();
 }
 
 void handle_root() {
