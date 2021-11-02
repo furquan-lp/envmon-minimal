@@ -72,8 +72,8 @@ void loop() {
 }
 
 void read_html_css() {
-    File html = SPIFFS.open("/index.html");
-    File css = SPIFFS.open("/style.css");
+    File html = SPIFFS.open("/index.html", "r");
+    File css = SPIFFS.open("/style.css", "r");
     if (!html) {
         show_err_lcd("index.html fail", "Stop.");
         Serial.println("Failed to open index.html");
