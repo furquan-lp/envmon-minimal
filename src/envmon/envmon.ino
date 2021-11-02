@@ -1,6 +1,7 @@
 #include <WiFi.h>
 #include <WebServer.h>
 #include <ESPmDNS.h>
+#include <SPIFFS.h>
 #include "sensors.h"
 #include "envmon.h"
 
@@ -8,17 +9,33 @@ void setup() {
     init_DHT();
     pinMode(LED_PIN, OUTPUT);
     clcd.init();
-    
     Serial.begin(115200);
+
+    if(!SPIFFS.begin(true)){
+        show_err_lcd("Filesystem Error", "Stop.");
+        Serial.println("An Error has occurred while mounting SPIFFS");
+        return;
+    }
+    read_html_css();
+
     Serial.println("Connecting to ");
     Serial.println(ssid);
+    clcd.clearLCD();
     clcd.printLCD("Connecting WiFi");
     WiFi.begin(ssid, password);
     clcd.selectLine(1);
+    uint8_t n = 0;
     while (WiFi.status() != WL_CONNECTED) {
+        if (n >= 10) {
+            show_err_lcd("WiFi failed.", "Rebooting...");
+            delay(1000);
+            ESP.restart();
+            return;
+        }
         delay(1000);
         Serial.print(".");
         clcd.printLCD(".");
+        n++;
     }
     clcd.clearLCD();
     Serial.println("\nWiFi connected");
@@ -40,6 +57,9 @@ void setup() {
 
     delay(100);
     server.on("/", handle_root);
+    server.on("/style.css", []() {
+        server.send(200, "text/css", css_data);
+    });
     server.begin();
     Serial.println("HTTP server started");
     delay(100);
@@ -49,6 +69,30 @@ void setup() {
 void loop() {
     delay(100);
     server.handleClient();
+}
+
+void read_html_css() {
+    File html = SPIFFS.open("/index.html", "r");
+    File css = SPIFFS.open("/style.css", "r");
+    if (!html) {
+        show_err_lcd("index.html fail", "Stop.");
+        Serial.println("Failed to open index.html");
+        return;
+    }
+    for (int i = 0; html.available(); i++) {
+        html_data[i] = html.read();
+    }
+    for (int i = 0; css.available(); i++) {
+        css_data[i] = css.read();
+    }
+    html.close();
+    css.close();
+}
+
+void show_err_lcd(const char* line1, const char* line2) {
+    clcd.clearLCD();
+    clcd.printLCD(line1);
+    clcd.printAt(line2, 1);
 }
 
 void handle_root() {
