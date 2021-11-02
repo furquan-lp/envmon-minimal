@@ -5,9 +5,11 @@ ESP32 IoT device to monitor environment data and upload it to a webserver
 
 ![](screenshot.gif)
 
-The Web Server serves a hardcoded HTML page that is updated with the data
-using snprintf(). The webpage is reloaded every three seconds using simple
-JavaScript code so the sensor data being displayed remains updated.
+The Web Server serves an HTML page from the SPIFFS `data` directory that is
+read and updated with the sensor data using snprintf() before being sent to the
+server along with the relevant `style.css` (also present in the `data`
+directory). The webpage is reloaded every three seconds using simple JavaScript
+code so the sensor data being displayed remains updated.
 
 ![](device.gif)
 
