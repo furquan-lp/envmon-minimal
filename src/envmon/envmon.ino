@@ -12,14 +12,13 @@ void setup() {
     Serial.begin(115200);
 
     if(!SPIFFS.begin(true)){
-        clcd.printLCD("Filesystem Error");
-        clcd.printAt("Stop.", 1);
+        show_err_lcd("Filesystem Error", "Stop.");
         Serial.println("An Error has occurred while mounting SPIFFS");
         return;
     }
     clcd.printLCD("Reading HTML/CSS");
     delay(100);
-    readHTMLCSS();
+    read_html_css();
 
     Serial.println("Connecting to ");
     Serial.println(ssid);
@@ -66,13 +65,11 @@ void loop() {
     server.handleClient();
 }
 
-void readHTMLCSS() {
+void read_html_css() {
     File html = SPIFFS.open("/index.html");
     File css = SPIFFS.open("/style.css");
     if (!html) {
-        clcd.clearLCD();
-        clcd.printLCD("index.html fail");
-        clcd.printAt("Stop.", 1);
+        show_err_lcd("index.html fail", "Stop.");
         Serial.println("Failed to open index.html");
         return;
     }
@@ -84,6 +81,12 @@ void readHTMLCSS() {
     }
     html.close();
     css.close();
+}
+
+void show_err_lcd(const char* line1, const char* line2) {
+    clcd.clearLCD();
+    clcd.printLCD(line1);
+    clcd.printAt(line2, 1);
 }
 
 void handle_root() {
