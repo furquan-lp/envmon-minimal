@@ -1,3 +1,7 @@
 body {
     font-family: Sans-Serif;
+    color:#444;
+}
+.esp32data {
+    background-color: #FFFFCC
 }
