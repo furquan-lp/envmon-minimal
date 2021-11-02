@@ -16,8 +16,6 @@ void setup() {
         Serial.println("An Error has occurred while mounting SPIFFS");
         return;
     }
-    clcd.printLCD("Reading HTML/CSS");
-    delay(100);
     read_html_css();
 
     Serial.println("Connecting to ");
@@ -26,10 +24,18 @@ void setup() {
     clcd.printLCD("Connecting WiFi");
     WiFi.begin(ssid, password);
     clcd.selectLine(1);
+    uint8_t n = 0;
     while (WiFi.status() != WL_CONNECTED) {
+        if (n >= 10) {
+            show_err_lcd("WiFi failed.", "Rebooting...");
+            delay(1000);
+            ESP.restart();
+            return;
+        }
         delay(1000);
         Serial.print(".");
         clcd.printLCD(".");
+        n++;
     }
     clcd.clearLCD();
     Serial.println("\nWiFi connected");
