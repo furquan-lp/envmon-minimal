@@ -15,5 +15,6 @@ WebServer server(HTTP_PORT);
 CharacterLCD clcd(0x27, 16, 2);
 
 void read_html_css(void);
+void show_err_lcd(const char* line1, const char* line2);
 void handle_root(void);
 #endif
