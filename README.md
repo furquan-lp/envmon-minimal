@@ -1,7 +1,7 @@
 # ![](icon.png) environment-monitor
 ESP32 IoT device to monitor environment data and upload it to a webserver
 
-![](https://img.shields.io/github/v/release/furquan-lp/environment-monitor?include_prereleases&style=flat-square) ![](https://img.shields.io/github/release-date/furquan-lp/environment-monitor?style=flat-square) ![](https://img.shields.io/github/license/furquan-lp/environment-monitor?style=flat-square)
+![](https://img.shields.io/github/v/release/furquan-lp/environment-monitor?include_prereleases&style=flat-square) ![](https://img.shields.io/github/release-date/furquan-lp/environment-monitor?style=flat-square) ![](https://img.shields.io/codacy/grade/897ab7ac3f824252b133442956f12f33?style=flat-square) ![](https://img.shields.io/github/license/furquan-lp/environment-monitor?style=flat-square)
 
 ![](screenshot.gif)
 
