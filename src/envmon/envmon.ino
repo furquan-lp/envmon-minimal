@@ -79,10 +79,10 @@ void read_html_css() {
         Serial.println("Failed to open index.html");
         return;
     }
-    for (int i = 0; html.available(); i++) {
+    for (int i = 0; html.available() && i < HTML_DATA_BUF; i++) {
         html_data[i] = html.read();
     }
-    for (int i = 0; css.available(); i++) {
+    for (int i = 0; css.available() && i < CSS_DATA_BUF; i++) {
         css_data[i] = css.read();
     }
     html.close();
