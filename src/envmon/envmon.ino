@@ -1,7 +1,6 @@
 #include <WiFi.h>
 #include <WebServer.h>
 #include <ESPmDNS.h>
-#include <SPIFFS.h>
 #include "sensors.h"
 #include "envmon.h"
 
@@ -14,7 +13,6 @@ void setup() {
         Serial.println("An Error has occurred while mounting SPIFFS");
         return;
     }
-    read_html_css();
 
     Serial.println("Connecting to ");
     Serial.println(ssid);
@@ -46,9 +44,6 @@ void setup() {
 
     delay(100);
     server.on("/", handle_root);
-    server.on("/style.css", []() {
-        server.send(200, "text/css", css_data);
-    });
     server.begin();
     Serial.println("HTTP server started");
     delay(100);
@@ -58,23 +53,6 @@ void setup() {
 void loop() {
     delay(100);
     server.handleClient();
-}
-
-void read_html_css() {
-    File html = SPIFFS.open("/index.html", "r");
-    File css = SPIFFS.open("/style.css", "r");
-    if (!html) {
-        Serial.println("Failed to open index.html");
-        return;
-    }
-    for (int i = 0; html.available() && i < HTML_DATA_BUF; i++) {
-        html_data[i] = html.read();
-    }
-    for (int i = 0; css.available() && i < CSS_DATA_BUF; i++) {
-        css_data[i] = css.read();
-    }
-    html.close();
-    css.close();
 }
 
 void handle_root() {
