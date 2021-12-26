@@ -8,11 +8,9 @@
 void setup() {
     init_DHT();
     pinMode(LED_PIN, OUTPUT);
-    clcd.init();
     Serial.begin(115200);
 
     if(!SPIFFS.begin(true)){
-        show_err_lcd("Filesystem Error", "Stop.");
         Serial.println("An Error has occurred while mounting SPIFFS");
         return;
     }
@@ -20,28 +18,21 @@ void setup() {
 
     Serial.println("Connecting to ");
     Serial.println(ssid);
-    clcd.clearLCD();
-    clcd.printLCD("Connecting WiFi");
     WiFi.begin(ssid, password);
-    clcd.selectLine(1);
     uint8_t n = 0;
     while (WiFi.status() != WL_CONNECTED) {
         if (n >= 10) {
-            show_err_lcd("WiFi failed.", "Rebooting...");
             delay(1000);
             ESP.restart();
             return;
         }
         delay(1000);
         Serial.print(".");
-        clcd.printLCD(".");
         n++;
     }
-    clcd.clearLCD();
     Serial.println("\nWiFi connected");
     Serial.print("IP Address: ");
     Serial.println(WiFi.localIP());
-    clcd.printLCD(WiFi.localIP().toString());
 
     if (MDNS.begin(mdns_url)) {
         Serial.print("MDNS responder started at: http://");
@@ -49,10 +40,8 @@ void setup() {
         Serial.println(".local/");
         char url[16];
         sprintf(url, "%s.local/", mdns_url);
-        clcd.printAt(url, 1);
     } else {
         Serial.println("Error setting up MDNS responder!");
-        clcd.printAt("MDNS.begin fail.", 1);
     }
 
     delay(100);
@@ -75,7 +64,6 @@ void read_html_css() {
     File html = SPIFFS.open("/index.html", "r");
     File css = SPIFFS.open("/style.css", "r");
     if (!html) {
-        show_err_lcd("index.html fail", "Stop.");
         Serial.println("Failed to open index.html");
         return;
     }
@@ -87,12 +75,6 @@ void read_html_css() {
     }
     html.close();
     css.close();
-}
-
-void show_err_lcd(const char* line1, const char* line2) {
-    clcd.clearLCD();
-    clcd.printLCD(line1);
-    clcd.printAt(line2, 1);
 }
 
 void handle_root() {
