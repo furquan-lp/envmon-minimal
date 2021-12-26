@@ -8,18 +8,13 @@ void setup() {
     init_DHT();
     pinMode(LED_PIN, OUTPUT);
     Serial.begin(115200);
-
-    if(!SPIFFS.begin(true)){
-        Serial.println("An Error has occurred while mounting SPIFFS");
-        return;
-    }
-
     Serial.println("Connecting to ");
     Serial.println(ssid);
     WiFi.begin(ssid, password);
     uint8_t n = 0;
     while (WiFi.status() != WL_CONNECTED) {
         if (n >= 10) {
+            Serial.println("Restarting...");
             delay(1000);
             ESP.restart();
             return;
@@ -60,8 +55,8 @@ void handle_root() {
     uint16_t uptime_s = millis() / 1000;
     uint8_t uptime_m = uptime_s / 60;
     uint8_t uptime_h = uptime_m / 60;
-    char html[strlen(html_data) + 32];
-    snprintf(html, sizeof(html), html_data, get_temp(), get_humid(), uptime_h, uptime_m % 60, uptime_s % 60);
-    server.send(200, "text/html", html);
+    char server_str[strlen(data_str) + 32];
+    snprintf(server_str, sizeof(server_str), data_str, get_temp(), get_humid(), uptime_h, uptime_m % 60, uptime_s % 60);
+    server.send(200, "text/plain", server_str);
     digitalWrite(LED_PIN, LOW);
 }
