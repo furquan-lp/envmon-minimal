@@ -1,4 +1,0 @@
-envmon-minimal
-Minimal version of the environment monitor, intended to be used by other
-applications as a backend. Outputs raw data from the sensors to the hardcoded
-mDNS URL.
