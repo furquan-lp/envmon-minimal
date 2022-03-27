@@ -6,8 +6,8 @@
 
 const char* ssid = "****";
 const char* password = "****";
-const char* mdns_url = "esp32env";
-const char* data_str = "[{\"backend\":\"envmon-minimal\",\"version\":\"1.3J\",\"temp\":\"%.2f\",\"humidity\":\"%.2f\",\"hours\":\"%02d\",\"minutes\":\"%02d\",\"seconds\":\"%02d\"}]";
+const char* mdns_url = "envmon";
+const char* data_str = "[{\"backend\":{\"backend\":\"envmon-minimal\",\"version\":\"1.3J\"},\"envdata\":{\"temp\":\"%.2f\",\"humidity\":\"%.2f\"},\"uptime\":{\"hours\":\"%02d\",\"minutes\":\"%02d\",\"seconds\":\"%02d\"}}]";
 
 WebServer server(HTTP_PORT);
 
