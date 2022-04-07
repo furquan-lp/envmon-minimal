@@ -38,6 +38,7 @@ void setup() {
     }
 
     delay(100);
+    server.enableCORS();
     server.on("/", handle_root);
     server.begin();
     Serial.println("HTTP server started");
