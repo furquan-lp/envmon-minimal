@@ -2,7 +2,7 @@
 #define ENVMON_H
 
 #define LED_PIN 13
-#define HTTP_PORT 80
+#define HTTP_PORT 8888
 
 const char* ssid = "****";
 const char* password = "****";
