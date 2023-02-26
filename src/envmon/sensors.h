@@ -1,8 +1,8 @@
 #ifndef SENSORS_H
 #define SENSORS_H
 
-#include <DHT_U.h>
 #include <DHT.h>
+#include <DHT_U.h>
 
 #define DHT_PIN 4
 #define DHTType DHT22
