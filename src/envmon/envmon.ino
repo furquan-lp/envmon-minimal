@@ -9,6 +9,17 @@ void setup() {
     init_DHT();
     pinMode(LED_PIN, OUTPUT);
     Serial.begin(115200);
+
+    IPAddress static_IP(192, 168, 0, 101);
+    IPAddress gateway(192, 168, 0, 1);
+    IPAddress subnet(255, 255, 255, 0);
+    IPAddress primary_DNS(10, 27, 25, 1);
+    IPAddress secondary_DNS(8, 8, 8, 8);
+    if (WiFi.config(static_IP, gateway, subnet, primary_DNS, secondary_DNS) ==
+        false) {
+        Serial.println("Configuration failed.");
+    }
+
     Serial.println("Connecting to ");
     Serial.println(ssid);
     WiFi.begin(ssid, password);
