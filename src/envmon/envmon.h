@@ -9,8 +9,9 @@ const char* password = "****";
 const char* mdns_url = "envmon";
 const char* data_str =
     "[{\"backend\":{\"name\":\"envmon-minimal\",\"version\":\"1.32J\"},"
-    "\"envdata\":{\"temp\":\"%.2f\",\"humidity\":\"%.2f\"},\"uptime\":{"
-    "\"hours\":\"%02d\",\"minutes\":\"%02d\",\"seconds\":\"%02d\"}}]";
+    "\"envdata\":{\"temp\":\"%.2f\",\"humidity\":\"%.2f\",\"co2\":\"%d\"},"
+    "\"uptime\":{\"hours\":\"%02d\",\"minutes\":\"%02d\",\"seconds\":\"%02d\"}}"
+    "]";
 
 WebServer server(HTTP_PORT);
 
