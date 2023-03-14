@@ -65,9 +65,9 @@ void handle_root() {
     uint16_t uptime_s = millis() / 1000;
     uint8_t uptime_m = uptime_s / 60;
     uint8_t uptime_h = uptime_m / 60;
-    char server_str[strlen(data_str) + 32];
+    char server_str[strlen(data_str) + 64];
     snprintf(server_str, sizeof(server_str), data_str, get_temp(), get_humid(),
-             uptime_h, uptime_m % 60, uptime_s % 60);
+             get_ppm(), uptime_h, uptime_m % 60, uptime_s % 60);
     server.send(200, "application/json", server_str);
     digitalWrite(LED_PIN, LOW);
 }
