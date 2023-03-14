@@ -9,6 +9,7 @@ void setup() {
     init_DHT();
     pinMode(LED_PIN, OUTPUT);
     Serial.begin(115200);
+    Serial.setDebugOutput(true);
 
     IPAddress static_IP(192, 168, 0, 101);
     IPAddress gateway(192, 168, 0, 1);
@@ -20,8 +21,7 @@ void setup() {
         Serial.println("Configuration failed.");
     }
 
-    Serial.println("Connecting to ");
-    Serial.println(ssid);
+    Serial.printf("Connecting to %s\n", ssid);
     WiFi.begin(ssid, password);
     uint8_t n = 0;
     while (WiFi.status() != WL_CONNECTED) {
@@ -35,16 +35,13 @@ void setup() {
         Serial.print(".");
         n++;
     }
-    Serial.println("\nWiFi connected");
-    Serial.print("IP Address: ");
-    Serial.println(WiFi.localIP());
+    Serial.println("\nWiFi connected.");
+    Serial.printf("IP Address: %s:%d\n", WiFi.localIP().toString().c_str(),
+                  HTTP_PORT);
 
     if (MDNS.begin(mdns_url)) {
-        Serial.print("MDNS responder started at: http://");
-        Serial.print(mdns_url);
-        Serial.println(".local/");
-        char url[16];
-        sprintf(url, "%s.local/", mdns_url);
+        Serial.printf("MDNS responder started at: http://%s.local:%d/\n",
+                      mdns_url, HTTP_PORT);
     } else {
         Serial.println("Error setting up MDNS responder!");
     }
