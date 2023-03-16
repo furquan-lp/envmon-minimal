@@ -25,9 +25,11 @@ void setup() {
     WiFi.begin(ssid, password);
     uint8_t n = 0;
     while (WiFi.status() != WL_CONNECTED) {
+        digitalWrite(LED_PIN, HIGH);
         if (n >= 10) {
             Serial.println("Restarting...");
             delay(1000);
+            digitalWrite(LED_PIN, LOW);
             ESP.restart();
             return;
         }
@@ -35,6 +37,7 @@ void setup() {
         Serial.print(".");
         n++;
     }
+    digitalWrite(LED_PIN, LOW);
     Serial.println("\nWiFi connected.");
     Serial.printf("IP Address: %s:%d\n", WiFi.localIP().toString().c_str(),
                   HTTP_PORT);
